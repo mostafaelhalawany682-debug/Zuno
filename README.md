@@ -1,19 +1,35 @@
-# ZUNO — short video social app starter
+# ZUNO — تطبيق فيديوهات قصيرة
 
-Arabic-first Flutter starter for a short-video social platform. This is a runnable UI prototype, not a production social network yet.
+مشروع Flutter أولي لمنصة فيديوهات قصيرة بواجهة عربية. يتضمن الآن تسجيلًا بالبريد وكلمة المرور عبر Supabase، وحفظ جلسة المستخدم، وعرض بيانات الملف الشخصي الأساسية.
 
-## Run
-1. Install Flutter SDK.
-2. `flutter create .` (inside this folder; keep `lib/main.dart`).
-3. `flutter pub get`
-4. `flutter run`
+## المتطلبات
 
-## Next production steps
-- Configure Supabase URL + anon key in `lib/main.dart` and initialize `supabase_flutter`.
-- Implement secure Storage/RLS, moderation, reporting, feed pagination, upload transcoding, and notifications.
-- Add a video delivery provider (Mux/Cloudflare Stream), live streaming provider, payment/KYC provider, and legal/privacy review.
-- Never put service-role keys or provider secrets in the mobile app.
+- Flutter يدعم Dart 3.3 أو أحدث.
+- مشروع Supabase.
 
-## Supabase ZUNO
-Project URL: `https://qklmgrwuggkdhyrwzlxj.supabase.co`
-Run with: `flutter run --dart-define=SUPABASE_URL=https://qklmgrwuggkdhyrwzlxj.supabase.co --dart-define=SUPABASE_ANON_KEY=YOUR_PUBLISHABLE_KEY`
+## إعداد Supabase
+
+1. افتح SQL Editor في Supabase، وراجع ثم نفّذ `schema.sql`. ينشئ الملف جدول الملفات الشخصية، ومشغّلًا لإنشاء ملف عند التسجيل، وسياسات RLS محدودة للقراءة والتعديل.
+2. من إعدادات مشروع Supabase انسخ **Project URL** و**publishable/anon key**.
+3. من هذا المجلد شغّل:
+
+```bash
+flutter pub get
+flutter run \
+  --dart-define=SUPABASE_URL=https://YOUR_PROJECT.supabase.co \
+  --dart-define=SUPABASE_ANON_KEY=YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY
+```
+
+استخدم مفتاح النشر/anon فقط داخل التطبيق. لا تضع مفتاح `service_role` أو أي سرّ للخادم في تطبيق الهاتف. إذا كان تأكيد البريد مفعّلًا في Supabase Auth، فعلى المستخدم تأكيد بريده قبل تسجيل الدخول.
+
+## ما تم تضمينه
+
+- إنشاء حساب وتسجيل دخول بالعربية ومن اليمين إلى اليسار.
+- التحقق من المدخلات ورسائل أخطاء المصادقة.
+- بوابة جلسة Supabase وتسجيل الخروج.
+- تحميل الاسم واسم المستخدم والبريد للمستخدم المسجل.
+- مشغّل SQL ينشئ ملفًا شخصيًا تلقائيًا للمستخدم الجديد، مع لاحقة فريدة مشتقة من معرّف المستخدم لاسم المستخدم.
+
+## ما يزال نموذجًا أوليًا
+
+الخلاصة تعرض بيانات تجريبية. رفع الفيديو وتوصيله، والإشراف والإبلاغ، وترقيم صفحات الخلاصة، والرسائل والإشعارات، وتعديل الملف الشخصي، ومراجعة الخصوصية والقانون، والنشر الإنتاجي ما زالت تحتاج إلى تنفيذ. لا يضيف المخطط سياسات عميل لجداول الفيديو والمتابعة والإعجاب والتعليقات والبلاغات؛ راجع وأضف سياسات RLS محددة قبل إتاحة هذه الميزات.
