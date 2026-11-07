@@ -5,13 +5,13 @@ import 'auth.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   const url = String.fromEnvironment('SUPABASE_URL');
-  const anonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+  const publishableKey = String.fromEnvironment('SUPABASE_ANON_KEY');
   final configured = url.startsWith('https://') &&
       !url.contains('YOUR_PROJECT') &&
-      anonKey.isNotEmpty &&
-      !anonKey.contains('YOUR_');
+      publishableKey.isNotEmpty &&
+      !publishableKey.contains('YOUR_');
   if (configured) {
-    await Supabase.initialize(url: url, anonKey: anonKey);
+    await Supabase.initialize(url: url, publishableKey: publishableKey);
   }
   runApp(ZunoApp(supabaseConfigured: configured));
 }
@@ -107,7 +107,7 @@ class _FeedPageState extends State<FeedPage>{
     ]));
   }),
   Positioned(top:10,right:14,child:Text('ZUNO',style:TextStyle(color:gold,fontWeight:FontWeight.w900,fontSize:23,letterSpacing:2))),
- );
+ ]);
 }
 
 class DiscoverPage extends StatelessWidget{const DiscoverPage({super.key});@override Widget build(BuildContext c)=>Padding(padding:const EdgeInsets.all(18),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 const _ink = Color(0xFF090B12);
-const _panel = Color(0xFF151925);
 const _gold = Color(0xFFFFC857);
 const _muted = Color(0xFF9BA3B4);
 
