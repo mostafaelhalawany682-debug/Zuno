@@ -111,7 +111,9 @@ class _AuthPageState extends State<AuthPage> {
     } on AuthException catch (e) {
       if (mounted) setState(() => _error = e.message);
     } catch (_) {
-      if (mounted) setState(() => _error = 'تعذّر إكمال العملية. حاول مرة أخرى.');
+      if (mounted) {
+        setState(() => _error = 'تعذّر إكمال العملية. حاول مرة أخرى.');
+      }
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -162,8 +164,8 @@ class _AuthPageState extends State<AuthPage> {
                         const SizedBox(height: 12),
                         TextFormField(
                           controller: _username,
-                          decoration: const InputDecoration(
-                              labelText: 'اسم المستخدم'),
+                          decoration:
+                              const InputDecoration(labelText: 'اسم المستخدم'),
                           validator: (v) {
                             final value = v?.trim() ?? '';
                             if (value.length < 3) {
@@ -217,8 +219,8 @@ class _AuthPageState extends State<AuthPage> {
                             ? const SizedBox(
                                 width: 20,
                                 height: 20,
-                                child: CircularProgressIndicator(
-                                    strokeWidth: 2),
+                                child:
+                                    CircularProgressIndicator(strokeWidth: 2),
                               )
                             : Text(_isSignUp ? 'إنشاء حساب' : 'تسجيل الدخول'),
                       ),
