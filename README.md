@@ -9,7 +9,7 @@
 
 ## إعداد Supabase
 
-1. افتح SQL Editor في Supabase، وراجع ثم نفّذ `schema.sql`. ينشئ الملف جدول الملفات الشخصية، ومشغّلًا لإنشاء ملف عند التسجيل، وسياسات RLS محدودة للقراءة والتعديل.
+1. مشروع ZUNO المرتبط مُحدّث بالفعل بترحيل `migrations/zuno_add_profile_auth_trigger.sql`؛ ولتطبيق الإعداد على مشروع ZUNO قائم آخر، راجع ثم نفّذ هذا الملف في SQL Editor. للتثبيت من الصفر استخدم `schema.sql`.
 2. من إعدادات مشروع Supabase انسخ **Project URL** و**publishable/anon key**.
 3. من هذا المجلد شغّل:
 
